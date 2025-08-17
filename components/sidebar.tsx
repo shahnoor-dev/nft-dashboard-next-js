@@ -120,13 +120,13 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
         <>
             {/* Overlay for mobile view */}
             <div
-                className={`fixed inset-0 bg-default-black/80 bg-opacity-30 z-30 transition-opacity md:hidden ${isShowOnMobile ? "opacity-100" : "opacity-0 pointer-events-none"
+                className={`fixed inset-0 bg-default-black/90 bg-opacity-30 z-30 transition-opacity md:hidden ${isShowOnMobile ? "opacity-100" : "opacity-0 pointer-events-none"
                     }`}
                 onClick={handleShowMobileMenu}
                 aria-hidden="true"
             >
                 <button
-                    className="absolute right-4 top-4 flex p-2 rounded-md border !border-border-offwhite bg-gray-100 hover:text-default-brand hover:bg-default-black hover:border-none"
+                    className="absolute right-4 top-4 flex p-2 rounded-md border !border-border-offwhite bg-gray-100 hover:bg-gray-100"
                 ><X className="!h-5 !w-5" />
                 </button>
             </div>

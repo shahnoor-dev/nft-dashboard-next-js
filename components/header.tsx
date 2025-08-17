@@ -62,7 +62,7 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar, pageTitl
     <header className="bg-white border-b border-border-offwhite px-4 lg:px-6 py-4">
       <div className="flex items-center justify-between gap-3">
         <button
-          className="hidden sm:flex p-2 rounded-md text-default-black border border-gray-200 hover:text-default-brand hover:bg-default-black"
+          className="hidden sm:flex p-2 rounded-md text-default-black border border-border-offwhite hover:bg-gray-100"
           onClick={toggleSidebar}
         >
           {isCollapsed ? <PanelRightClose className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
@@ -71,7 +71,7 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar, pageTitl
         <div className="flex items-center flex-1 gap-3">
           <button
             onClick={setIsShowOnMobile}
-            className="sm:hidden p-2 rounded-md text-default-black border border-gray-200 hover:text-default-brand hover:bg-default-black"
+            className="sm:hidden p-2 rounded-md text-default-black border  border-border-offwhite hover:bg-gray-100"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -84,7 +84,7 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar, pageTitl
           <div className="relative" ref={searchRef}>
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 text-default-black hover:text-default-brand border border-border-offwhite hover:bg-default-black rounded-lg"
+              className="p-2 text-default-black border  border-border-offwhite hover:bg-gray-100 rounded-lg"
             >
               <Search className="!w-5 !h-5" />
             </button>
@@ -95,7 +95,7 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar, pageTitl
           <div className="relative" ref={notificationRef}>
             <button
               onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-              className="p-2 text-default-black hover:text-default-brand border border-border-offwhite hover:bg-default-black rounded-lg relative"
+              className="p-2 text-default-black border  border-border-offwhite hover:bg-gray-100 rounded-lg relative"
             >
               <Bell className="!w-5 !h-5" />
               <div className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></div>
