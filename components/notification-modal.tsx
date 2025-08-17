@@ -1,6 +1,7 @@
 "use client"
 
-import type React from "react"
+import type React from "react";
+import * as Popover from '@radix-ui/react-popover';
 
 interface NotificationModalProps {
   onClose: () => void
@@ -60,9 +61,9 @@ export default function NotificationModal({ onClose }: NotificationModalProps) {
   ]
 
   return (
-    <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+    <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-2xl border border-border-offwhite z-50">
       {/* Header */}
-      <div className="px-4 py-3 border-b border-gray-200">
+      <div className="px-4 py-3 border-b border-border-offwhite">
         <h3 className="font-semibold text-gray-900">Notification</h3>
         <p className="text-sm text-gray-500">You have 0 unread messages</p>
       </div>
@@ -76,7 +77,7 @@ export default function NotificationModal({ onClose }: NotificationModalProps) {
           {notifications.map((notification) => (
             <div
               key={notification.id}
-              className="flex items-start space-x-3 py-3 hover:bg-gray-50 rounded-lg px-2 -mx-2"
+              className="flex items-start space-x-3 py-3 hover:bg-gray-50 rounded-lg px-2 -mx-2 cursor-pointer"
             >
               {notification.icon}
               <div className="flex-1 min-w-0">

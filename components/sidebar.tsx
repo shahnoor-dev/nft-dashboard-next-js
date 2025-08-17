@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import * as Tooltip from '@radix-ui/react-tooltip';
-import * as HoverCard from '@radix-ui/react-hover-card';
+import * as Popover from '@radix-ui/react-popover';
 
 import {
     LayoutDashboard,
@@ -125,10 +125,10 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
                 onClick={handleShowMobileMenu}
                 aria-hidden="true"
             >
-              <button
-          className="absolute right-4 top-4 flex p-2 rounded-md border !border-border-offwhite bg-gray-100 hover:text-default-brand hover:bg-default-black hover:border-none"
-        ><X className="!h-5 !w-5" />
-        </button>
+                <button
+                    className="absolute right-4 top-4 flex p-2 rounded-md border !border-border-offwhite bg-gray-100 hover:text-default-brand hover:bg-default-black hover:border-none"
+                ><X className="!h-5 !w-5" />
+                </button>
             </div>
 
             {/* Sidebar */}
@@ -149,7 +149,7 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
                     <nav className="flex-1 px-4 py-2">
                         <ul className="space-y-2">
                             {menuConfig.map((item) => {
-                                // ✨ NEW: Check if a submenu item is active to highlight the parent
+                                // Check if a submenu item is active to highlight the parent
                                 const isActiveParent =
                                     item.type === 'menu' &&
                                     item.subMenuItems.some(sub => pathname === sub.href);
@@ -186,9 +186,8 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
                                                     </Tooltip.Root>
                                                 </Tooltip.Provider>
                                             ) : (
-                                                <HoverCard.Root openDelay={100} closeDelay={100}>
-                                                    <HoverCard.Trigger asChild>
-                                                        {/* ✨ UPDATED: Applying active styles here */}
+                                                <Popover.Root>
+                                                    <Popover.Trigger asChild>
                                                         <div
                                                             className={`flex items-center justify-center p-3 font-medium rounded-lg transition-colors cursor-pointer ${isActiveParent
                                                                 ? "bg-default-black text-default-brand" // Active parent style
@@ -197,9 +196,9 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
                                                         >
                                                             {item.icon}
                                                         </div>
-                                                    </HoverCard.Trigger>
-                                                    <HoverCard.Portal>
-                                                        <HoverCard.Content
+                                                    </Popover.Trigger>
+                                                    <Popover.Portal>
+                                                        <Popover.Content
                                                             side="right"
                                                             align="start"
                                                             sideOffset={5}
@@ -222,9 +221,9 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
                                                                     </li>
                                                                 ))}
                                                             </ul>
-                                                        </HoverCard.Content>
-                                                    </HoverCard.Portal>
-                                                </HoverCard.Root>
+                                                        </Popover.Content>
+                                                    </Popover.Portal>
+                                                </Popover.Root>
                                             )
                                         ) : (
                                             // --- RENDER EXPANDED VIEW (No changes here) ---

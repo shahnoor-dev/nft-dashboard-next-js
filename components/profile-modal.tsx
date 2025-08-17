@@ -101,11 +101,11 @@ export default function ProfileModal({ onClose }: ProfileModalProps) {
   ]
 
   return (
-    <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+    <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-lg shadow-2xl border border-border-offwhite z-50">
       {/* User Info */}
-      <div className="px-4 py-3 border-b border-gray-200">
+      <div className="px-4 py-3 border-b border-border-offwhite">
         <div className="flex items-center space-x-3">
-          <img src="/placeholder.svg?height=40&width=40" alt="Kevin Cranel" className="w-10 h-10 rounded-full" />
+              <img src="https://images.unsplash.com/photo-1644945584589-c13b856ea51b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile" className="w-9.5 h-9.5 rounded-full object-cover" />
           <div>
             <h3 className="font-semibold text-gray-900">Kevin Cranel</h3>
             <p className="text-sm text-gray-500">@kecrane</p>

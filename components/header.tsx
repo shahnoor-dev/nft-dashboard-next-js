@@ -3,23 +3,40 @@
 import { useState, useRef, useEffect } from "react"
 import NotificationModal from "@/components/notification-modal"
 import ProfileModal from "@/components/profile-modal"
+import SearchModal from "@/components/search-modal";
+// FIX: This import will now work correctly
+import type { SearchableItem } from "@/components/search-modal";
 import {
   Search,
-  Upload,
   PanelLeftClose,
   PanelRightClose,
-  Menu
+  Menu,
+  Bell,
+  ChevronDown
 } from "lucide-react";
 
 interface HeaderProps {
   setIsShowOnMobile?: () => void;
   isCollapsed: boolean;
   toggleSidebar: () => void;
+  pageTitle: string;
 }
 
-export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar }: HeaderProps) {
+// FIX: Add the website data constant here
+const websiteData: SearchableItem[] = [
+  { type: "Page", title: "Dashboard", path: "/dashboard" },
+  { type: "Page", title: "Inbox", path: "/inbox" },
+  { type: "Page", title: "Analytics", path: "/analytics" },
+  { type: "User", title: "Alice Johnson", path: "/users/alice" },
+  { type: "Collection", title: "Modern Art NFT", path: "/collections/modern-art" },
+];
+
+export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar, pageTitle }: HeaderProps) {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
+
+  const searchRef = useRef<HTMLDivElement>(null)
   const notificationRef = useRef<HTMLDivElement>(null)
   const profileRef = useRef<HTMLDivElement>(null)
 
@@ -32,6 +49,9 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar }: Header
       if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
         setIsProfileOpen(false)
       }
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchOpen(false)
+      }
     }
 
     document.addEventListener("mousedown", handleClickOutside)
@@ -39,94 +59,71 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar }: Header
   }, [])
 
   return (
-    <header className="bg-white border-b border-gray-200 px-4 lg:px-6 py-4">
-      <div className="flex items-center justify-between">
-        {/* Toggle sidebar */}
-
-
+    <header className="bg-white border-b border-border-offwhite px-4 lg:px-6 py-4">
+      <div className="flex items-center justify-between gap-3">
         <button
-          className="hidden sm:flex p-2 rounded-md text-default-black border border-border-offwhite hover:text-default-brand hover:bg-default-black mr-3"
+          className="hidden sm:flex p-2 rounded-md text-default-black border border-gray-200 hover:text-default-brand hover:bg-default-black"
           onClick={toggleSidebar}
         >
-          {isCollapsed ? <PanelRightClose className="!h-5 !w-5" /> : <PanelLeftClose className="!h-5 !w-5" />}
+          {isCollapsed ? <PanelRightClose className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
         </button>
 
-        {/* Left Side - Mobile Menu + Search */}
-        <div className="flex items-center flex-1">
-          {/* Mobile Menu Button */}
+        <div className="flex items-center flex-1 gap-3">
           <button
             onClick={setIsShowOnMobile}
-            className="sm:hidden p-2 rounded-md text-default-black border border-border-offwhite hover:text-default-brand hover:bg-default-black mr-3"
+            className="sm:hidden p-2 rounded-md text-default-black border border-gray-200 hover:text-default-brand hover:bg-default-black"
           >
-            <Menu className="!h-5 !w-5" />
+            <Menu className="h-5 w-5" />
           </button>
-
-          {/* Search Bar */}
-          <div className="relative flex-1 max-w-lg">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-            <input
-              type="text"
-              placeholder="Search items, collections, and users"
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
+          <h1 className="font-medium text-2xl text-gray-800">{pageTitle}</h1>
         </div>
 
-        {/* Center - ETH Balance */}
-        <div className="hidden md:flex items-center mx-6">
-          <div className="flex items-center space-x-2 bg-gray-50 px-3 py-2 rounded-lg">
-            <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xs font-bold">Ξ</span>
-            </div>
-            <span className="font-semibold text-gray-900">3,421 ETH</span>
+        {/* Right Side - Actions */}
+        <div className="flex items-center space-x-2 md:space-x-4">
+          {/* Search */}
+          <div className="relative" ref={searchRef}>
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="p-2 text-default-black hover:text-default-brand border border-border-offwhite hover:bg-default-black rounded-lg"
+            >
+              <Search className="!w-5 !h-5" />
+            </button>
+            {isSearchOpen && <SearchModal data={websiteData} onClose={() => setIsSearchOpen(false)} />}
           </div>
-        </div>
 
-        {/* Right Side - Notifications + Profile */}
-        <div className="flex items-center space-x-4">
           {/* Notification */}
           <div className="relative" ref={notificationRef}>
             <button
               onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-              className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg relative"
+              className="p-2 text-default-black hover:text-default-brand border border-border-offwhite hover:bg-default-black rounded-lg relative"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 17h5l-5-5V9a6 6 0 10-12 0v3l-5 5h5m7 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-              {/* Notification dot */}
-              <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+              <Bell className="!w-5 !h-5" />
+              <div className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></div>
             </button>
-
             {isNotificationOpen && <NotificationModal onClose={() => setIsNotificationOpen(false)} />}
           </div>
 
-          {/* Profile */}
+          {/* User */}
           <div className="relative" ref={profileRef}>
             <button
               onClick={() => setIsProfileOpen(!isProfileOpen)}
-              className="flex items-center space-x-2 p-1 rounded-lg hover:bg-gray-100"
+              className="flex items-center gap-2"
             >
-              <img src="/placeholder.svg?height=32&width=32" alt="Profile" className="w-8 h-8 rounded-full" />
-              <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+              <img src="https://images.unsplash.com/photo-1644945584589-c13b856ea51b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile" className="w-9.5 h-9.5 rounded-full object-cover" />
             </button>
-
             {isProfileOpen && <ProfileModal onClose={() => setIsProfileOpen(false)} />}
+          </div>
+
+          {/* Coin Status */}
+          <div className="hidden sm:flex items-center border border-border-offwhite h-9.5 p-2 gap-2 rounded-lg font-jet-brains-mono">
+            <div className="w-7 h-7 bg-default-brand/10 rounded-lg p-1 flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.9 9.10012L11.67 6.98012C11.88 6.89012 12.12 6.89012 12.32 6.98012L17.09 9.10012C17.51 9.29012 17.9 8.78012 17.61 8.42012L12.61 2.31012C12.27 1.89012 11.71 1.89012 11.37 2.31012L6.36997 8.42012C6.08997 8.78012 6.48 9.29012 6.9 9.10012Z" fill="#88D40E" />
+                  <path d="M6.90001 14.9L11.68 17.02C11.89 17.11 12.13 17.11 12.33 17.02L17.11 14.9C17.53 14.71 17.92 15.22 17.63 15.58L12.63 21.69C12.29 22.11 11.73 22.11 11.39 21.69L6.39 15.58C6.09 15.22 6.47001 14.71 6.90001 14.9Z" fill="#88D40E" />
+                  <path d="M11.78 9.49L7.65 11.55C7.28 11.73 7.28 12.26 7.65 12.44L11.78 14.5C11.92 14.57 12.09 14.57 12.23 14.5L16.36 12.44C16.73 12.26 16.73 11.73 16.36 11.55L12.23 9.49C12.08 9.42 11.92 9.42 11.78 9.49Z" fill="#88D40E" />
+                </svg>
+            </div>
+            <span>3,421 ETH</span>
           </div>
         </div>
       </div>
@@ -134,5 +131,4 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar }: Header
   )
 }
 
-// Keep default export for backward compatibility
-export default Header
+export default Header;
