@@ -1,103 +1,238 @@
-import Image from "next/image";
+"use client"
+import DashboardBanner from "@/components/dashboard-banner"
+import AuctionCard from "@/components/auction-card"
+import FeaturedCreator from "@/components/featured-creator"
+import CollectionRow from "@/components/collection-row"
+import ActivityItem from "@/components/activity-item"
 
-export default function Home() {
+export default function HomePage() {
+  // Sample data for trending auctions
+  const trendingAuctions = [
+    {
+      id: "1",
+      image: "/placeholder.svg?height=300&width=300",
+      title: "The Unfortable Facer",
+      artist: "Bane Riccardo",
+      currentBid: "18,99 ETH",
+      timeLeft: "2h 4m 32s",
+    },
+    {
+      id: "2",
+      image: "/placeholder.svg?height=300&width=300",
+      title: "Mad Ballot Holder",
+      artist: "Angelina Cruzz",
+      currentBid: "4,32 ETH",
+      timeLeft: "2h 4m 32s",
+    },
+    {
+      id: "3",
+      image: "/placeholder.svg?height=300&width=300",
+      title: "Pile of Many Plates",
+      artist: "Ralphi Arness",
+      currentBid: "4,32 ETH",
+      timeLeft: "2h 4m 32s",
+    },
+  ]
+
+  // Sample data for featured creator
+  const featuredCreator = {
+    id: "creator-1",
+    name: "Murakami Flowers",
+    username: "@mfmkkus",
+    avatar: "/placeholder.svg?height=48&width=48",
+    coverImage: "/placeholder.svg?height=200&width=400",
+    description: "Murakami Flowers is a work in which artist Takashi Murakami's representative artwork...",
+    isVerified: true,
+  }
+
+  // Sample data for top collections
+  const topCollections = [
+    {
+      id: "col-1",
+      name: "Doodle Lucu",
+      creator: "Doodles",
+      avatar: "/placeholder.svg?height=48&width=48",
+      volume: "14,32",
+      change24h: "20,4%",
+      floorPrice: "2,3",
+      owners: "2,2K",
+      items: "18",
+      isPositiveChange: true,
+    },
+    {
+      id: "col-2",
+      name: "Kimawi Genesis",
+      creator: "Kimawi - Japan",
+      avatar: "/placeholder.svg?height=48&width=48",
+      volume: "6,11",
+      change24h: "18,2%",
+      floorPrice: "12,52",
+      owners: "1,9K",
+      items: "21",
+      isPositiveChange: false,
+    },
+  ]
+
+  // Sample data for recent activity
+  const recentActivity = [
+    {
+      id: "act-1",
+      name: "Uzachi #4390",
+      collection: "Ragnarok Meta",
+      avatar: "/placeholder.svg?height=40&width=40",
+      price: "2.15 ETH",
+    },
+    {
+      id: "act-2",
+      name: "Doodles #3486",
+      collection: "Doodles",
+      avatar: "/placeholder.svg?height=40&width=40",
+      price: "4.42 ETH",
+    },
+    {
+      id: "act-3",
+      name: "Murakami #2766",
+      collection: "Murakami",
+      avatar: "/placeholder.svg?height=40&width=40",
+      price: "1.08 ETH",
+    },
+    {
+      id: "act-4",
+      name: "Doodles #2761",
+      collection: "Murakami",
+      avatar: "/placeholder.svg?height=40&width=40",
+      price: "4.4 ETH",
+    },
+    {
+      id: "act-5",
+      name: "Peachy Puch#22",
+      collection: "Mindblowonstudio",
+      avatar: "/placeholder.svg?height=40&width=40",
+      price: "5.62 ETH",
+    },
+    {
+      id: "act-6",
+      name: "Gemmy #3723",
+      collection: "GemmySolana",
+      avatar: "/placeholder.svg?height=40&width=40",
+      price: "5.32 ETH",
+    },
+  ]
+
+  // Event handlers
+  const handleLike = (id: string) => {
+    console.log("[v0] Liked auction:", id)
+  }
+
+  const handlePlaceBid = (id: string) => {
+    console.log("[v0] Place bid for:", id)
+  }
+
+  const handleFollow = (id: string) => {
+    console.log("[v0] Follow creator:", id)
+  }
+
+  const handleCollectionClick = (id: string) => {
+    console.log("[v0] View collection:", id)
+  }
+
+  const handleActivityClick = (id: string) => {
+    console.log("[v0] View activity:", id)
+  }
+
+  const handleExploreMore = () => {
+    console.log("[v0] Explore more clicked")
+  }
+
+  const handleSellArtwork = () => {
+    console.log("[v0] Sell artwork clicked")
+  }
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gray-50">
+      {/* Removed sidebar, header, and mobile overlay since they're in layout */}
+      <main className="p-4 lg:p-6">
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Dashboard Banner */}
+          <DashboardBanner onExploreMore={handleExploreMore} onSellArtwork={handleSellArtwork} />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {/* Main Grid Layout */}
+          <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+            {/* Left Column - Trending Auctions */}
+            <div className="xl:col-span-3 space-y-8">
+              {/* Trending Auction Section */}
+              <section>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">Trending Auction</h2>
+                  <button className="text-blue-600 hover:text-blue-700 font-medium">View All</button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {trendingAuctions.map((auction) => (
+                    <AuctionCard key={auction.id} {...auction} onLike={handleLike} onPlaceBid={handlePlaceBid} />
+                  ))}
+                </div>
+              </section>
+
+              {/* Top Collection Section */}
+              <section>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">Top Collection</h2>
+                  <button className="text-blue-600 hover:text-blue-700 font-medium">View All</button>
+                </div>
+
+                <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
+                  {/* Table Header */}
+                  <div className="flex items-center py-4 px-6 bg-gray-50 border-b border-gray-200 text-sm font-medium text-gray-500">
+                    <div className="flex-1">Collection</div>
+                    <div className="hidden sm:block w-20 text-right">Volume</div>
+                    <div className="hidden md:block w-20 text-right">24h %</div>
+                    <div className="hidden lg:block w-24 text-right">Floor Price</div>
+                    <div className="hidden xl:block w-20 text-right">Owners</div>
+                    <div className="w-16 text-right">Items</div>
+                  </div>
+
+                  {/* Collection Rows */}
+                  <div className="divide-y divide-gray-100">
+                    {topCollections.map((collection) => (
+                      <CollectionRow key={collection.id} {...collection} onClick={handleCollectionClick} />
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            {/* Right Column - Featured Creator & Recent Activity */}
+            <div className="xl:col-span-1 space-y-8">
+              {/* Featured Creator */}
+              <section>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-bold text-gray-900">Featured Creators</h2>
+                  <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">See All</button>
+                </div>
+
+                <FeaturedCreator {...featuredCreator} onFollow={handleFollow} />
+              </section>
+
+              {/* Recent Activity */}
+              <section>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-bold text-gray-900">Recent Activity</h2>
+                  <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">See All</button>
+                </div>
+
+                <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
+                  <div className="p-6 space-y-1">
+                    {recentActivity.map((activity) => (
+                      <ActivityItem key={activity.id} {...activity} onClick={handleActivityClick} />
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
 }
