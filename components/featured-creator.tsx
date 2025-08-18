@@ -33,48 +33,50 @@ export default function FeaturedCreator({
   }
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-      {/* Cover Image */}
-      <div className="relative h-48 overflow-hidden">
-        <img src={coverImage || "/placeholder.svg"} alt={`${name} cover`} className="w-full h-full object-cover" />
+    <div className="relative w-80 bg-gradient-to- rounded-3xl flex flex-col gap-4 p-4 bg-cover bg-left-top font-jet-brains-mono" style={{ backgroundImage: `url(${coverImage})` }}>
+      {/* Profile Header */}
+      <div className="bg-white absolute rounded-xl left-0 top-0">
+        <img
+          src={avatar || "/placeholder.svg"}
+          alt={name}
+          className="w-18 h-18 rounded-xl object-cover"
+        />
       </div>
-
-      {/* Profile Content */}
-      <div className="p-6">
-        {/* Avatar and Info */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center space-x-3">
-            <img
-              src={avatar || "/placeholder.svg"}
-              alt={name}
-              className="w-12 h-12 rounded-full border-2 border-white shadow-sm"
-            />
-            <div>
-              <div className="flex items-center space-x-2">
-                <h3 className="font-semibold text-gray-900">{name}</h3>
-                {isVerified && (
-                  <svg className="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                )}
-              </div>
-              <p className="text-gray-500 text-sm">{username}</p>
-            </div>
-          </div>
-
-          <button
-            onClick={handleFollow}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
-              following ? "bg-gray-100 text-gray-700 hover:bg-gray-200" : "bg-blue-600 text-white hover:bg-blue-700"
-            }`}
-          >
-            {following ? "Following" : "Follow"}
-          </button>
+      <div className="relative left-22">
+        <div className="flex items-center gap-1.5">
+          <h2 className="text-xl font-bold text-gray-900">{name}</h2>
+          {isVerified && (
+            <svg
+              className="w-5 h-5 text-gray-900"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clipRule="evenodd"
+              />
+            </svg>
+          )}
         </div>
-
-        {/* Description */}
-        <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+        <p className="text-sm text-gray-600">{username}</p>
       </div>
+
+      {/* Description */}
+      <p className="text-gray-700 text-sm mt-4 leading-relaxed">
+        {description}
+      </p>
+
+      {/* Follow Button */}
+      <button
+        onClick={handleFollow}
+        className={`w-full py-3 rounded-full font-semibold transition-colors duration-300 ${following
+          ? "bg-default-brand border-2 border-default-brand text-white"
+          : "bg-default-black border-2 border-default-black text-default-brand hover:bg-transparent hover:text-default-black"
+          }`}
+      >
+        {following ? "Following" : "Follow"}
+      </button>
     </div>
   )
 }

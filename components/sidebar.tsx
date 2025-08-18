@@ -101,7 +101,7 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
         const handleResize = () => {
             const width = window.innerWidth;
 
-            if (width < 640) {
+            if (width < 768) {
                 setIsCollapsed(false);
             } else if (width < 1280) {
                 setIsCollapsed(true);
@@ -133,7 +133,7 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
 
             {/* Sidebar */}
             <aside
-                className={`fixed top-0 left-0 h-full bg-white z-40 transform transition-transform duration-300 ease-in-out border-r border-border-offwhite sm:relative sm:translate-x-0 ${isCollapsed ? "w-[77px]" : "w-72"} ${isShowOnMobile ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-0 left-0 h-full bg-white z-40 transform transition-transform duration-300 ease-in-out border-r border-border-offwhite md:relative md:translate-x-0 ${isCollapsed ? "w-[77px]" : "w-72"} ${isShowOnMobile ? "translate-x-0" : "-translate-x-full"
                     }`}
             >
                 <div className="flex flex-col h-full">

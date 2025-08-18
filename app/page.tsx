@@ -20,10 +20,10 @@ export default function HomePage() {
   // Sample data for featured creator
   const featuredCreator = {
     id: "creator-1",
-    name: "Murakami Flowers",
+    name: "Murakami",
     username: "@mfmkkus",
-    avatar: "/placeholder.svg?height=48&width=48",
-    coverImage: "/placeholder.svg?height=200&width=400",
+    avatar: "https://images.unsplash.com/photo-1613163755693-3df66f1a0e11?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    coverImage: "/img/dashboard/feature-bg.png",
     description: "Murakami Flowers is a work in which artist Takashi Murakami's representative artwork...",
     isVerified: true,
   }
@@ -34,7 +34,7 @@ export default function HomePage() {
       id: "col-1",
       name: "Doodle Lucu",
       creator: "Doodles",
-      avatar: "/placeholder.svg?height=48&width=48",
+      avatar: "https://images.unsplash.com/photo-1647538044240-ab6ed1b8056a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       volume: "14,32",
       change24h: "20,4%",
       floorPrice: "2,3",
@@ -46,7 +46,31 @@ export default function HomePage() {
       id: "col-2",
       name: "Kimawi Genesis",
       creator: "Kimawi - Japan",
-      avatar: "/placeholder.svg?height=48&width=48",
+      avatar: "https://images.unsplash.com/photo-1748416100946-3703ba688db8?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      volume: "6,11",
+      change24h: "18,2%",
+      floorPrice: "12,52",
+      owners: "1,9K",
+      items: "21",
+      isPositiveChange: false,
+    },
+    {
+      id: "col-3",
+      name: "Kimawi Genesis",
+      creator: "Kimawi - Japan",
+      avatar: "https://images.unsplash.com/photo-1695927621677-ec96e048dce2?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      volume: "6,11",
+      change24h: "22,2%",
+      floorPrice: "12,52",
+      owners: "1,9K",
+      items: "21",
+      isPositiveChange: true,
+    },
+    {
+      id: "col-4",
+      name: "Kimawi Genesis",
+      creator: "Kimawi - Japan",
+      avatar: "https://images.unsplash.com/photo-1569779213435-ba3167dde7cc?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       volume: "6,11",
       change24h: "18,2%",
       floorPrice: "12,52",
@@ -61,43 +85,43 @@ export default function HomePage() {
     {
       id: "act-1",
       name: "Uzachi #4390",
-      collection: "Ragnarok Meta",
-      avatar: "/placeholder.svg?height=40&width=40",
+      collection: "Ragnarok",
+      avatar: "https://images.unsplash.com/photo-1569779213435-ba3167dde7cc?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "2.15 ETH",
     },
     {
       id: "act-2",
       name: "Doodles #3486",
       collection: "Doodles",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://images.unsplash.com/photo-1647538044240-ab6ed1b8056a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "4.42 ETH",
     },
     {
       id: "act-3",
       name: "Murakami #2766",
       collection: "Murakami",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://images.unsplash.com/photo-1569779213435-ba3167dde7cc?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "1.08 ETH",
     },
     {
       id: "act-4",
       name: "Doodles #2761",
       collection: "Murakami",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://images.unsplash.com/photo-1647538044240-ab6ed1b8056a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "4.4 ETH",
     },
     {
       id: "act-5",
       name: "Peachy Puch#22",
-      collection: "Mindblowonstudio",
-      avatar: "/placeholder.svg?height=40&width=40",
+      collection: "Mindblow",
+      avatar: "https://images.unsplash.com/photo-1748416100946-3703ba688db8?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "5.62 ETH",
     },
     {
       id: "act-6",
       name: "Gemmy #3723",
       collection: "GemmySolana",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://images.unsplash.com/photo-1695927621677-ec96e048dce2?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       price: "5.32 ETH",
     },
   ]
@@ -134,13 +158,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Removed sidebar, header, and mobile overlay since they're in layout */}
-      <main className="p-4 lg:p-6">
+      <main>
         <div className="max-w-7xl mx-auto space-y-8">
 
           {/* Main Grid Layout */}
-          <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+          <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Column - Trending Auctions */}
-            <div className="xl:col-span-3 space-y-8">
+            <div className="lg:w-[calc(100%-332px)] space-y-8">
               {/* Dashboard Banner */}
               <DashboardBanner onExploreMore={handleExploreMore} onSellArtwork={handleSellArtwork} />
               {/* Trending Auction Section */}
@@ -150,66 +174,72 @@ export default function HomePage() {
                   <Link href={"/marketplace/market"} className="text-default-brand font-medium">View All</Link>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {trendingNFTs.map((nft) => (
-              <AuctionCard key={nft.id} nft={nft} />
-            ))}
+                    <AuctionCard key={nft.id} nft={nft} />
+                  ))}
                 </div>
               </section>
 
               {/* Top Collection Section */}
               <section>
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">Top Collection</h2>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium">View All</button>
+                <div className="flex items-center justify-between font-jet-brains-mono mb-6">
+                  <h2 className="title">Top Collection</h2>
+                  <Link href={"/profile/collection"} className="text-default-brand font-medium">View All</Link>
                 </div>
 
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-                  {/* Table Header */}
-                  <div className="flex items-center py-4 px-6 bg-gray-50 border-b border-gray-200 text-sm font-medium text-gray-500">
-                    <div className="flex-1">Collection</div>
-                    <div className="hidden sm:block w-20 text-right">Volume</div>
-                    <div className="hidden md:block w-20 text-right">24h %</div>
-                    <div className="hidden lg:block w-24 text-right">Floor Price</div>
-                    <div className="hidden xl:block w-20 text-right">Owners</div>
-                    <div className="w-16 text-right">Items</div>
-                  </div>
+                {/* Use a table for semantic and accessible data display */}
+                <div className="relative overflow-x-auto no-scrollbar border border-border-offwhite rounded-[24px]">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 font-jet-brains-mono">
 
-                  {/* Collection Rows */}
-                  <div className="divide-y divide-gray-100">
-                    {topCollections.map((collection) => (
-                      <CollectionRow key={collection.id} {...collection} onClick={handleCollectionClick} />
-                    ))}
-                  </div>
+                    {/* Table Head */}
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <tr>
+                        <th className="p-4 text-left text-sm font-medium text-gray-500">Collection</th>
+                        <th className="p-4 w-28 text-right text-sm font-medium text-gray-500">Volume</th>
+                        <th className="p-4 w-28 text-right text-sm font-medium text-gray-500">24h %</th>
+                        <th className="p-4 w-32 text-right text-sm font-medium text-gray-500">Floor Price</th>
+                        <th className="p-4 w-28 text-right text-sm font-medium text-gray-500">Owners</th>
+                        <th className="p-4 w-24 text-right text-sm font-medium text-gray-500">Items</th>
+                      </tr>
+                    </thead>
+
+                    {/* Table Body */}
+                    <tbody>
+                      {topCollections.map((collection) => (
+                        <CollectionRow key={collection.id} {...collection} onClick={handleCollectionClick} />
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </section>
             </div>
 
             {/* Right Column - Featured Creator & Recent Activity */}
-            <div className="xl:col-span-1 space-y-8">
+            <div className="lg:w-75 flex flex-col gap-8">
               {/* Featured Creator */}
-              <section>
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">Featured Creators</h2>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">See All</button>
+              <section className="order-2 lg:order-1">
+                <div className="flex items-center justify-between font-jet-brains-mono mb-6">
+                  <h2 className="sub-title">Featured Creators</h2>
+                  <Link href={"/profile/history"} className="text-default-brand text-sm font-medium">View All</Link>
                 </div>
 
                 <FeaturedCreator {...featuredCreator} onFollow={handleFollow} />
               </section>
 
               {/* Recent Activity */}
-              <section>
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">Recent Activity</h2>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">See All</button>
+              <section className="order-1 lg:order-2">
+                <div className="flex items-center justify-between font-jet-brains-mono mb-6">
+                  <h2 className="sub-title">Recent Activity</h2>
+                  <Link href={"/profile/history"} className="text-default-brand text-sm font-medium">View All</Link>
                 </div>
 
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-                  <div className="p-6 space-y-1">
+                <div className="relative overflow-x-auto no-scrollbar border border-border-offwhite rounded-[24px]">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 font-jet-brains-mono">
                     {recentActivity.map((activity) => (
                       <ActivityItem key={activity.id} {...activity} onClick={handleActivityClick} />
                     ))}
-                  </div>
+                  </table>
                 </div>
               </section>
             </div>

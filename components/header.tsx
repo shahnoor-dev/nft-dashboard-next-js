@@ -62,7 +62,7 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar, pageTitl
     <header className="bg-white border-b border-border-offwhite px-4 lg:px-6 py-4">
       <div className="flex items-center justify-between gap-3">
         <button
-          className="hidden sm:flex p-2 rounded-md text-default-black border border-border-offwhite hover:bg-gray-100"
+          className="hidden md:flex p-2 rounded-md text-default-black border border-border-offwhite hover:bg-gray-100"
           onClick={toggleSidebar}
         >
           {isCollapsed ? <PanelRightClose className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
@@ -71,7 +71,7 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar, pageTitl
         <div className="flex items-center flex-1 gap-3">
           <button
             onClick={setIsShowOnMobile}
-            className="sm:hidden p-2 rounded-md text-default-black border  border-border-offwhite hover:bg-gray-100"
+            className="md:hidden p-2 rounded-md text-default-black border  border-border-offwhite hover:bg-gray-100"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -109,7 +109,7 @@ export function Header({ setIsShowOnMobile, isCollapsed, toggleSidebar, pageTitl
               onClick={() => setIsProfileOpen(!isProfileOpen)}
               className="flex items-center gap-2"
             >
-              <img src="https://images.unsplash.com/photo-1644945584589-c13b856ea51b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile" className="w-9.5 h-9.5 rounded-full object-cover" />
+              <img src="https://images.unsplash.com/photo-1644945584589-c13b856ea51b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile" className="w-9.5 h-9.5 rounded-full object-cover flex-none" />
             </button>
             {isProfileOpen && <ProfileModal onClose={() => setIsProfileOpen(false)} />}
           </div>

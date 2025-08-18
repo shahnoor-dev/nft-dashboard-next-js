@@ -46,3 +46,16 @@ button, a{
 .title {
   @apply text-2xl font-medium font-jet-brains-mono text-title;
 }
+
+.sub-title {
+  @apply text-lg font-medium font-jet-brains-mono text-title;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
