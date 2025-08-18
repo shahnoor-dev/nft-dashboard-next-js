@@ -16,7 +16,7 @@ export default function DashboardBanner({ onExploreMore, onSellArtwork }: Dashbo
           The world's first and largest digital marketplace for crypto NFTs
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-wrap gap-4">
           <button
             onClick={onExploreMore}
             className="px-6 py-3 bg-default-black text-default-brand border-2 border-default-black hover:text-default-black hover:bg-transparent font-semibold rounded-lg transition-colors duration-200"
