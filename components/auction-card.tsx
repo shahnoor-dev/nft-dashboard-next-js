@@ -3,145 +3,132 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
+import { useNFTData, type NFT } from "@/hooks/use-nft-data"
 
-interface AuctionCardProps {
-  id: string
-  image: string
-  title: string
-  creator: string
-  currentBid: number
-  auctionEndTime: string
-  saved?: boolean
-  onSaveToggle?: (id: string) => void
-  showStatus?: boolean
+interface UnifiedAuctionCardProps {
+    nft: NFT
+    showStatus?: boolean
+    className?: string
 }
 
-export function AuctionCard({
-  id,
-  image,
-  title,
-  creator,
-  currentBid,
-  auctionEndTime,
-  saved = false,
-  onSaveToggle,
-  showStatus = false,
-}: AuctionCardProps) {
-  const [isLiked, setIsLiked] = useState(saved)
-  const [timeLeft, setTimeLeft] = useState("")
+export function UnifiedAuctionCard({ nft, showStatus = true, className = "" }: UnifiedAuctionCardProps) {
+    const { toggleSave } = useNFTData()
+    const [timeLeft, setTimeLeft] = useState("")
 
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      const now = new Date().getTime()
-      const end = new Date(auctionEndTime).getTime()
-      const diff = end - now
+    useEffect(() => {
+        const calculateTimeLeft = () => {
+            const now = new Date().getTime()
+            const endTime = new Date(nft.auctionEndTime).getTime()
+            const difference = endTime - now
 
-      if (diff <= 0) {
-        setTimeLeft("Ended")
-        return
-      }
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
-      const hours = Math.floor(diff / (1000 * 60 * 60))
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+                if (days > 0) {
+                    setTimeLeft(`${days}d ${hours}h ${minutes}m`)
+                } else if (hours > 0) {
+                    setTimeLeft(`${hours}h ${minutes}m ${seconds}s`)
+                } else {
+                    setTimeLeft(`${minutes}m ${seconds}s`)
+                }
+            } else {
+                setTimeLeft("Ended")
+            }
+        }
 
-      setTimeLeft(`${hours}h ${minutes}m ${seconds}s`)
+        calculateTimeLeft()
+        const timer = setInterval(calculateTimeLeft, 1000)
+
+        return () => clearInterval(timer)
+    }, [nft.auctionEndTime])
+
+    const handleSaveToggle = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        toggleSave(nft.id)
     }
 
-    calculateTimeLeft()
-    const interval = setInterval(calculateTimeLeft, 1000)
+    const isEnded = timeLeft === "Ended"
 
-    return () => clearInterval(interval)
-  }, [auctionEndTime])
+    return (
+        <Link href={`/market/${nft.id}`} className={`block ${className}`}>
+            <div className="flex bg-white rounded-3xl shadow-lg hover:shadow-xl p-2 gap-4 h-full transition-shadow duration-300 w-full max-w-3xl mx-auto overflow-hidden font-jet-brains-mono">
 
-  const handleLike = () => {
-    setIsLiked(!isLiked)
-    onSaveToggle?.(id)
-  }
+                {/* Left Side: Image Container */}
+                <div className="relative w-35">
+                    <img
+                        src={nft.image || "/placeholder.svg"}
+                        alt={nft.title}
+                        className="w-full h-full object-cover rounded-xl"
+                    />
+                    {/* Timer: Positioned at the bottom-left of the image */}
+                    <div className="absolute bottom-2.5 right-2.5 bg-black/60 text-white text-xs font-medium px-2.5 py-1.5 rounded-full backdrop-blur-xl">
+                        {timeLeft}
+                    </div>
+                </div>
 
-  const handlePlaceBid = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    console.log(`[v0] Place bid clicked for NFT ${id}`)
-  }
+                {/* Right Side: Content Area */}
+                <div className="flex flex-1 flex-col justify-between gap-2.5">
 
-  return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-      {/* Image Container */}
-      <div className="relative aspect-square overflow-hidden">
-        <img
-          src={image || "/placeholder.svg"}
-          alt={title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-        />
+                    {/* Top Section: Title and Author */}
+                    <div>
+                        <h3 className="font-semibold text-default-black leading-5 ">{nft.title}</h3>
+                        <p className="text-sm text-gray-400 leading-4 mt-1">By {nft.creator.name}</p>
+                    </div>
 
-        {/* Timer Badge */}
-        <div
-          className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-medium ${
-            timeLeft === "Ended" ? "bg-gray-500/90 text-white" : "bg-black/70 text-white"
-          }`}
-        >
-          {timeLeft}
-        </div>
+                    {/* Bottom Section: Bid Info and Actions */}
+                    <div>
+                        {/* Current Bid */}
+                        <p className="text-xs leading-[13px] text-gray-400">Current Bid</p>
+                        <div className="flex items-center gap-1 mt-1">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.6 6.06667L7.77998 4.65334C7.91998 4.59334 8.07999 4.59334 8.21333 4.65334L11.3933 6.06667C11.6733 6.19334 11.9333 5.85334 11.74 5.61334L8.40664 1.54C8.17998 1.26 7.80665 1.26 7.57998 1.54L4.24665 5.61334C4.05998 5.85334 4.32 6.19334 4.6 6.06667Z" fill="#88D40E" />
+                                <path d="M4.6 9.93334L7.78664 11.3467C7.92664 11.4067 8.08666 11.4067 8.21999 11.3467L11.4066 9.93334C11.6866 9.80667 11.9467 10.1467 11.7533 10.3867L8.41999 14.46C8.19332 14.74 7.81999 14.74 7.59333 14.46L4.25999 10.3867C4.05999 10.1467 4.31333 9.80667 4.6 9.93334Z" fill="#88D40E" />
+                                <path d="M7.85333 6.32667L5.09999 7.7C4.85333 7.82 4.85333 8.17333 5.09999 8.29333L7.85333 9.66667C7.94666 9.71333 8.05996 9.71333 8.1533 9.66667L10.9066 8.29333C11.1533 8.17333 11.1533 7.82 10.9066 7.7L8.1533 6.32667C8.0533 6.28 7.94666 6.28 7.85333 6.32667Z" fill="#88D40E" />
+                            </svg>
 
-        {/* Status Badge for Profile Pages */}
-        {showStatus && timeLeft === "Ended" && (
-          <div className="absolute top-4 right-16 bg-green-500/90 text-white px-3 py-1 rounded-full text-sm font-medium">
-            Ended
-          </div>
-        )}
+                            <span className="text-sm">3,421 ETH</span>
+                        </div>
+                    </div>
 
-        {/* Heart Icon */}
-        <button
-          onClick={(e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            handleLike()
-          }}
-          className="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white rounded-full transition-colors duration-200"
-        >
-          <svg
-            className={`w-5 h-5 ${isLiked ? "text-red-500 fill-current" : "text-gray-600"}`}
-            fill={isLiked ? "currentColor" : "none"}
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            />
-          </svg>
-        </button>
-      </div>
-
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="font-semibold text-gray-900 text-lg mb-1">{title}</h3>
-        <p className="text-gray-500 text-sm mb-4">By {creator}</p>
-
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-gray-500 text-sm">Current Bid</p>
-            <div className="flex items-center gap-1">
-              <svg className="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
-              </svg>
-              <p className="font-semibold text-gray-900">{currentBid} ETH</p>
+                    {/* Actions: Button and Heart Icon */}
+                    <div className="flex items-center justify-between gap-4">
+                        <button
+                            onClick={(e) => e.preventDefault()}
+                            className="bg-default-brand text-xs text-default-black font-meidum py-2 px-3.5 rounded-xl hover:bg-default-brand"
+                        >
+                            Place a Bid
+                        </button>
+                        <button
+                            onClick={handleSaveToggle}
+                            className="p-2 group h-7.5 w-7.5 bg-gray-200 flex items-center justify-center rounded-full"
+                        >
+                            <svg
+                                className={`w-4.5 h-4.5 transition-colors flex-none ${nft.saved
+                                    ? "text-red-500 fill-current"
+                                    : "text-white/80 group-hover:text-white/100"
+                                    }`}
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <button
-            onClick={handlePlaceBid}
-            className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
-          >
-            Place a Bid
-          </button>
-        </div>
-      </div>
-    </div>
-  )
+        </Link>
+    )
 }
 
-export default AuctionCard
+export default UnifiedAuctionCard

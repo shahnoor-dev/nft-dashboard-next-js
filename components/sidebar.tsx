@@ -58,7 +58,7 @@ export function Sidebar({ isCollapsed, setIsCollapsed, isShowOnMobile, setIsShow
             type: 'link',
             icon: <LayoutDashboard size={20} />,
             label: "Dashboard",
-            href: "/dashboard",
+            href: "/",
         },
         {
             type: 'link',

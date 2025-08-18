@@ -1,38 +1,21 @@
 "use client"
+
+import { useMemo } from "react"
 import DashboardBanner from "@/components/dashboard-banner"
+import { useNFTData } from "@/hooks/use-nft-data"
 import AuctionCard from "@/components/auction-card"
 import FeaturedCreator from "@/components/featured-creator"
 import CollectionRow from "@/components/collection-row"
 import ActivityItem from "@/components/activity-item"
+import Link from "next/link"
 
 export default function HomePage() {
-  // Sample data for trending auctions
-  const trendingAuctions = [
-    {
-      id: "1",
-      image: "/placeholder.svg?height=300&width=300",
-      title: "The Unfortable Facer",
-      artist: "Bane Riccardo",
-      currentBid: "18,99 ETH",
-      timeLeft: "2h 4m 32s",
-    },
-    {
-      id: "2",
-      image: "/placeholder.svg?height=300&width=300",
-      title: "Mad Ballot Holder",
-      artist: "Angelina Cruzz",
-      currentBid: "4,32 ETH",
-      timeLeft: "2h 4m 32s",
-    },
-    {
-      id: "3",
-      image: "/placeholder.svg?height=300&width=300",
-      title: "Pile of Many Plates",
-      artist: "Ralphi Arness",
-      currentBid: "4,32 ETH",
-      timeLeft: "2h 4m 32s",
-    },
-  ]
+  const { loading, getTrendingNFTs } = useNFTData()
+  const trendingNFTs = getTrendingNFTs()
+
+  if (loading) {
+    return <div className="flex-1 p-6">Loading...</div>
+  }
 
   // Sample data for featured creator
   const featuredCreator = {
@@ -149,28 +132,28 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Removed sidebar, header, and mobile overlay since they're in layout */}
       <main className="p-4 lg:p-6">
         <div className="max-w-7xl mx-auto space-y-8">
-          {/* Dashboard Banner */}
-          <DashboardBanner onExploreMore={handleExploreMore} onSellArtwork={handleSellArtwork} />
 
           {/* Main Grid Layout */}
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
             {/* Left Column - Trending Auctions */}
             <div className="xl:col-span-3 space-y-8">
+              {/* Dashboard Banner */}
+              <DashboardBanner onExploreMore={handleExploreMore} onSellArtwork={handleSellArtwork} />
               {/* Trending Auction Section */}
               <section>
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">Trending Auction</h2>
-                  <button className="text-blue-600 hover:text-blue-700 font-medium">View All</button>
+                <div className="flex items-center justify-between font-jet-brains-mono mb-6">
+                  <h2 className="title">Trending Auction</h2>
+                  <Link href={"/marketplace/market"} className="text-default-brand font-medium">View All</Link>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {trendingAuctions.map((auction) => (
-                    <AuctionCard key={auction.id} {...auction} onLike={handleLike} onPlaceBid={handlePlaceBid} />
-                  ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {trendingNFTs.map((nft) => (
+              <AuctionCard key={nft.id} nft={nft} />
+            ))}
                 </div>
               </section>
 

@@ -1,0 +1,246 @@
+{
+  "nfts": [
+    {
+      "id": "1",
+      "title": "Dayco Serpentine Belt",
+      "description": "Open repair of infrarenal aortic aneurysm or dissection, plus repair of associated arterial trauma, following unsuccessful endovascular repair; tube prosthesis...",
+      "image": "https://images.unsplash.com/photo-1659710173823-b4362e0ab9c7?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "trending": false,
+      "creator": {
+        "id": "creator1",
+        "name": "Eleanor Pena",
+        "username": "eleanor.pena",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "bio": "Dedicated to create amazing for art exhibition information please check link below:",
+        "website": "artistictea.io",
+        "joinedDate": "April 2021"
+      },
+      "owner": {
+        "id": "owner1",
+        "name": "Ahmad Kazufo",
+        "username": "ahmad.kazufo",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "currentBid": 18.99,
+      "auctionEndTime": "2024-01-20T15:30:00Z",
+      "category": "Digital Art",
+      "collection": "Eleanor Pena",
+      "saved": false,
+      "ownedByUser": false,
+      "bidHistory": [
+        {
+          "id": "bid1",
+          "bidder": {
+            "name": "Jerremy K.",
+            "avatar": "/placeholder.svg?height=32&width=32"
+          },
+          "amount": 4.32,
+          "timestamp": "2022-05-13T06:21:00Z"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Person Melirik Kesamping",
+      "description": "A stunning portrait showcasing artistic expression and human emotion.",
+      "image": "https://images.unsplash.com/photo-1722599622308-af75718d12f8?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "trending": false,
+      "creator": {
+        "id": "creator1",
+        "name": "Eleanor Pena",
+        "username": "eleanor.pena",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "bio": "Dedicated to create amazing for art exhibition information please check link below:",
+        "website": "artistictea.io",
+        "joinedDate": "April 2021"
+      },
+      "owner": {
+        "id": "owner2",
+        "name": "Mike Johnson",
+        "username": "mike.johnson",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "currentBid": 2.42,
+      "auctionEndTime": "2024-01-21T10:15:00Z",
+      "category": "Digital Art",
+      "collection": "Eleanor Pena",
+      "saved": false,
+      "ownedByUser": false,
+      "bidHistory": []
+    },
+    {
+      "id": "3",
+      "title": "Building Reflection Xd",
+      "description": "Urban architecture captured in a unique digital perspective.",
+      "image": "https://images.unsplash.com/photo-1639603683079-7398c604497a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "trending": false,
+      "creator": {
+        "id": "creator1",
+        "name": "Eleanor Pena",
+        "username": "eleanor.pena",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "bio": "Dedicated to create amazing for art exhibition information please check link below:",
+        "website": "artistictea.io",
+        "joinedDate": "April 2021"
+      },
+      "owner": {
+        "id": "owner3",
+        "name": "Sarah Wilson",
+        "username": "sarah.wilson",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "currentBid": 52.12,
+      "auctionEndTime": "2024-01-22T14:45:00Z",
+      "category": "Photography",
+      "collection": "Eleanor Pena",
+      "saved": false,
+      "ownedByUser": false,
+      "bidHistory": []
+    },
+    {
+      "id": "4",
+      "title": "Natural Atomic Circle",
+      "description": "Abstract representation of natural forms and atomic structures.",
+      "image": "https://images.unsplash.com/photo-1650923500748-eee80ee6e7d1?q=80&w=1121&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "trending": true,
+      "creator": {
+        "id": "creator1",
+        "name": "Eleanor Pena",
+        "username": "eleanor.pena",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "bio": "Dedicated to create amazing for art exhibition information please check link below:",
+        "website": "artistictea.io",
+        "joinedDate": "April 2021"
+      },
+      "owner": {
+        "id": "owner4",
+        "name": "David Chen",
+        "username": "david.chen",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "currentBid": 22.52,
+      "auctionEndTime": "2024-01-23T09:20:00Z",
+      "category": "Abstract",
+      "collection": "Eleanor Pena",
+      "saved": false,
+      "ownedByUser": false,
+      "bidHistory": []
+    },
+    {
+      "id": "5",
+      "title": "Oldtown Artistic Alley",
+      "description": "Street art and urban culture captured in digital form.",
+      "image": "https://images.unsplash.com/photo-1672912464993-f211ad866293?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "trending": false,
+      "creator": {
+        "id": "creator1",
+        "name": "Eleanor Pena",
+        "username": "eleanor.pena",
+        "avatar": "/placeholder.svg?height=40&width=40",
+        "bio": "Dedicated to create amazing for art exhibition information please check link below:",
+        "website": "artistictea.io",
+        "joinedDate": "April 2021"
+      },
+      "owner": {
+        "id": "owner5",
+        "name": "Lisa Park",
+        "username": "lisa.park",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "currentBid": 1.224,
+      "auctionEndTime": "2024-01-24T16:30:00Z",
+      "category": "Street Art",
+      "collection": "Eleanor Pena",
+      "saved": false,
+      "ownedByUser": false,
+      "bidHistory": []
+    },
+    {
+      "id": "6",
+      "title": "Mad Ballot Holders",
+      "description": "A vibrant and dynamic digital artwork featuring abstract forms and colors.",
+      "image": "https://images.unsplash.com/photo-1664022617645-cf71791942e4?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "trending": true,
+      "creator": {
+        "id": "creator2",
+        "name": "Angelina Cruzz",
+        "username": "angelina.cruzz",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "owner": {
+        "id": "owner6",
+        "name": "Mike Johnson",
+        "username": "mike.johnson",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "currentBid": 18.2,
+      "auctionEndTime": "2024-01-21T10:15:00Z",
+      "category": "Abstract",
+      "collection": "Angelina Cruzz",
+      "saved": false,
+      "ownedByUser": false,
+      "bidHistory": []
+    },
+    {
+      "id": "7",
+      "title": "Diehard BATTERY-SILVER",
+      "description": "Industrial-inspired artwork with metallic textures and bold design.",
+      "image": "https://images.unsplash.com/photo-1647514422086-18cde746fa26?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "trending": false,
+      "creator": {
+        "id": "creator3",
+        "name": "Ralph Edwards",
+        "username": "ralph.edwards",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "owner": {
+        "id": "currentUser",
+        "name": "Kevin Cranel",
+        "username": "kecrane",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "currentBid": 2.78,
+      "auctionEndTime": "2024-01-15T10:00:00Z",
+      "category": "Digital Art",
+      "collection": "Ralph Edwards",
+      "saved": true,
+      "ownedByUser": true,
+      "bidHistory": []
+    },
+    {
+      "id": "8",
+      "title": "Bosch Spark Plug",
+      "description": "Mechanical precision meets artistic vision in this industrial piece.",
+      "image": "/placeholder.svg?height=400&width=400",
+      "trending": false,
+      "creator": {
+        "id": "creator4",
+        "name": "Guy Hawkins",
+        "username": "guy.hawkins",
+        "avatar": "https://images.unsplash.com/photo-1676838543991-ec6fc8b837ad?q=80&w=1228&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      },
+      "owner": {
+        "id": "currentUser",
+        "name": "Kevin Cranel",
+        "username": "kecrane",
+        "avatar": "/placeholder.svg?height=40&width=40"
+      },
+      "currentBid": 8.99,
+      "auctionEndTime": "2024-01-10T12:00:00Z",
+      "category": "Digital Art",
+      "collection": "Guy Hawkins",
+      "saved": true,
+      "ownedByUser": true,
+      "bidHistory": []
+    }
+  ],
+  "categories": ["All", "Digital Art", "Abstract", "Minimalist", "Industrial", "Photography", "3D Art", "Street Art"],
+  "collections": ["All", "Eleanor Pena", "Angelina Cruzz", "Ralph Edwards", "Guy Hawkins", "Marvin McKinney"],
+  "priceRanges": [
+    { "label": "All Prices", "min": 0, "max": 1000 },
+    { "label": "Under 1 ETH", "min": 0, "max": 1 },
+    { "label": "1 - 5 ETH", "min": 1, "max": 5 },
+    { "label": "5 - 10 ETH", "min": 5, "max": 10 },
+    { "label": "10+ ETH", "min": 10, "max": 1000 }
+  ]
+}
