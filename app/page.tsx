@@ -156,11 +156,8 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Removed sidebar, header, and mobile overlay since they're in layout */}
-      <main>
+    <div className="h-[calc(100vh-103px)] xl:h-[calc(100vh-119px)] overflow-y-scroll no-scrollbar">
         <div className="max-w-7xl mx-auto space-y-8">
-
           {/* Main Grid Layout */}
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Column - Trending Auctions */}
@@ -245,7 +242,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </main>
     </div>
   )
 }

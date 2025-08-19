@@ -166,7 +166,7 @@ export default function MessagePage() {
   const currentChat = conversations.find((conv) => conv.id === selectedChat)
 
   return (
-    <div className="relative h-[calc(100vh-103px)] xl:h-[calc(100vh-119px)] md:max-w-7xl md:mx-auto flex">
+    <div className="relative h-[calc(100vh-103px)] xl:h-[calc(100vh-119px)] md:max-w-full flex">
       {/* Message List */}
       <div
         className={`relative w-full z-10 md:w-64 lg:w-96 transition-transform duration-300 ease-in-out ${(isMessageListVisible || (currentChat === undefined)) ? 'left-0' : '-left-[100vw]'} md:left-0
@@ -193,7 +193,7 @@ export default function MessagePage() {
             currentUserId={CURRENT_USER_ID}
           />
         ) : (
-          <div className="hidden md:flex h-full bg-gray-50 items-center justify-center">
+          <div className="hidden md:flex h-[calc(100%-60px)] bg-gray-50 items-center justify-center">
             <div className="text-center">
               <h3 className="text-lg font-medium text-gray-900">Select a conversation</h3>
               <p className="text-gray-500">Choose from the list to start messaging</p>
