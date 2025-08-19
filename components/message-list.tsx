@@ -18,9 +18,9 @@ export default function MessageList({
   onChatSelect,
 }: MessageListProps) {
   return (
-    <div className="flex flex-col h-full border-r border-gray-200 bg-white">
+    <div className="flex flex-col h-full bg-white">
       {/* Search Bar Section */}
-      <div className="p-4 border-b border-gray-200">
+      <div className="px-4 pb-5 pt-0.5">
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,13 +43,13 @@ export default function MessageList({
       </div>
 
       {/* Conversations List */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="">
         {conversations.map((conversation) => (
           <button
             key={conversation.id}
             onClick={() => onChatSelect(conversation.id)}
             className={`w-full p-4 flex items-center space-x-3 text-left hover:bg-gray-50 transition-colors ${
-              selectedChat === conversation.id ? "bg-blue-50 border-r-4 border-blue-500" : ""
+              selectedChat === conversation.id ? "bg-blue-50 border-l-2 border-default-brand" : ""
             }`}
           >
             <div className="relative flex-shrink-0">
@@ -77,7 +77,7 @@ export default function MessageList({
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-600 truncate">{conversation.last_message}</p>
                 {conversation.unread_count > 0 && (
-                  <span className="ml-2 bg-blue-500 text-white text-xs rounded-full px-2 py-1 min-w-[20px] text-center">
+                  <span className="ml-2 bg-default-brand text-white text-xs rounded-full p-2 w-5 h-5 flex items-center justify-center">
                     {conversation.unread_count}
                   </span>
                 )}

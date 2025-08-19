@@ -65,7 +65,7 @@ export default function ClientLayout({
           toggleSidebar={toggleSidebar}
           pageTitle={pageTitle}
         />
-        <main className="flex-1 overflow-y-auto p-4 xl:p-6">{children}</main>
+        <main className="flex-1 p-4 xl:p-6">{children}</main>
       </div>
     </div>
   );

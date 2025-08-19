@@ -6,7 +6,7 @@ import MessageInput from "@/components/message-input"
 import { Message, Conversation } from "@/app/inbox/page" // Import types from the main page
 
 interface ChatAreaProps {
-    currentChat: Conversation
+    currentChat: Conversation | null
     messages: Message[]
     onSendMessage: (text: string, files?: File[]) => void
     currentUserId: string
@@ -24,8 +24,8 @@ export default function ChatArea({ currentChat, messages, onSendMessage, current
     }, [messages])
 
     return (
-        <div className="flex flex-col h-full bg-gray-50">
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex flex-col h-[calc(100vh-162px)] md:h-[calc(100%-60px)] bg-gray-50">
+            <div className="flex-1 overflow-y-auto no-scrollbar p-4 space-y-4">
                 {messages.map((message) => (
                     <MessageBubble
                         key={message.id}

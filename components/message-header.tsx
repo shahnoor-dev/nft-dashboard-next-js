@@ -9,7 +9,7 @@ interface MessageHeaderProps {
 
 export default function MessageHeader({ currentChat, onBack }: MessageHeaderProps) {
   return (
-    <header className="bg-white border-b border-gray-200 px-4 py-3 flex-shrink-0">
+    <header className="bg-white px-4 pb-4 flex-1">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           {/* --- NEW: Back Button for Mobile --- */}

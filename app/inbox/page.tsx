@@ -48,13 +48,6 @@ export default function MessagePage() {
     setMessageListVisible(true)
   }
 
-  // Auto-select first chat on desktop but not mobile
-  useEffect(() => {
-    if (conversations.length > 0 && !selectedChat && window.innerWidth >= 768) {
-      setSelectedChat(conversations[0].id)
-    }
-  }, [conversations])
-
   // Hide message list on initial mobile load if a chat is selected
   useEffect(() => {
     if (window.innerWidth < 768) {
@@ -173,46 +166,40 @@ export default function MessagePage() {
   const currentChat = conversations.find((conv) => conv.id === selectedChat)
 
   return (
-    <div className="h-screen flex flex-col font-sans">
-      <div className="flex-1 flex overflow-hidden">
-        {/* Message List */}
-        <div
-          className={`
-            w-full md:w-80 lg:w-96 flex-shrink-0 flex flex-col
-            transition-transform duration-300 ease-in-out
-            ${isMessageListVisible ? 'translate-x-0' : '-translate-x-full'}
-            md:translate-x-0
+    <div className="relative h-[calc(100vh-103px)] xl:h-[calc(100vh-119px)] md:max-w-7xl md:mx-auto flex">
+      {/* Message List */}
+      <div
+        className={`relative w-full z-10 md:w-64 lg:w-96 transition-transform duration-300 ease-in-out ${(isMessageListVisible || (currentChat === undefined)) ? 'left-0' : '-left-[100vw]'} md:left-0
           `}
-        >
-          <MessageList
-            conversations={filteredConversations}
-            selectedChat={selectedChat}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-            onChatSelect={handleChatSelect}
-          />
-        </div>
+      >
+        <MessageList
+          conversations={filteredConversations}
+          selectedChat={selectedChat}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          onChatSelect={handleChatSelect}
+        />
+      </div>
 
-        {/* Chat Area */}
-        <div className="flex-1 flex flex-col bg-gray-50">
-          <MessageHeader currentChat={currentChat} onBack={handleBackToList} />
-          {selectedChat && currentChat ? (
-            <ChatArea
-              key={selectedChat}
-              currentChat={currentChat}
-              messages={messages}
-              onSendMessage={handleSendMessage}
-              currentUserId={CURRENT_USER_ID}
-            />
-          ) : (
-            <div className="hidden md:flex flex-1 items-center justify-center">
-              <div className="text-center">
-                <h3 className="text-lg font-medium text-gray-900">Select a conversation</h3>
-                <p className="text-gray-500">Choose from the list to start messaging</p>
-              </div>
+      {/* Chat Area */}
+      <div className={` absolute md:relative top-0 left-0 w-[calc(100vw-32px)] md:w-full  md:flex md:flex-col transition-transform duration-300 ease-in-out ${(isMessageListVisible || (currentChat === undefined)) ? '-right-[100vw]' : 'right-0'} `}>
+        <MessageHeader currentChat={currentChat} onBack={handleBackToList} />
+        {selectedChat && currentChat ? (
+          <ChatArea
+            key={selectedChat}
+            currentChat={currentChat}
+            messages={messages}
+            onSendMessage={handleSendMessage}
+            currentUserId={CURRENT_USER_ID}
+          />
+        ) : (
+          <div className="hidden md:flex h-full bg-gray-50 items-center justify-center">
+            <div className="text-center">
+              <h3 className="text-lg font-medium text-gray-900">Select a conversation</h3>
+              <p className="text-gray-500">Choose from the list to start messaging</p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   )
